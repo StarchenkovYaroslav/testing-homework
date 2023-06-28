@@ -3,7 +3,7 @@ import { combineEpics, createEpicMiddleware, ofType, StateObservable } from 'red
 import { EMPTY, from, map, mapTo, mergeMap, mergeMapTo, Observable, tap } from 'rxjs';
 import { produce } from 'immer';
 import { CartState, CheckoutFormData, Product, ProductShortInfo } from '../common/types';
-import { CartApi, ExampleApi } from './api';
+import { CartApi, ExampleApi, IExampleApi } from './api'
 
 export interface ApplicationState {
     products?: ProductShortInfo[];
@@ -13,7 +13,7 @@ export interface ApplicationState {
 }
 
 export interface EpicDeps {
-    api: ExampleApi;
+    api: IExampleApi;
     cart: CartApi;
 }
 
@@ -136,7 +136,7 @@ export const rootEpic = combineEpics(
     productDetailsLoadEpic,
 );
 
-export function initStore(api: ExampleApi, cart: CartApi) {
+export function initStore(api: IExampleApi, cart: CartApi) {
     const rootReducer = createRootReducer({
         cart: cart.getState()
     });

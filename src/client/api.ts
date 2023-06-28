@@ -1,7 +1,13 @@
 import axios from 'axios';
 import { CartState, CheckoutFormData, CheckoutResponse, Product, ProductShortInfo } from '../common/types';
 
-export class ExampleApi {
+export interface IExampleApi {
+    getProducts: () => Promise<{ data: ProductShortInfo[] }>
+    getProductById: (id: number) => Promise<{ data: Product }>
+    checkout: (form: CheckoutFormData, cart: CartState) => Promise<{ data: CheckoutResponse }>
+}
+
+export class ExampleApi implements IExampleApi {
     constructor(private readonly basename: string) {
 
     }

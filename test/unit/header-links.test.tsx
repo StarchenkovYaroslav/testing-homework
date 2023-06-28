@@ -1,31 +1,14 @@
 import React from 'react';
 
-import { render, RenderResult } from '@testing-library/react'
+import { RenderResult, screen } from '@testing-library/react'
 
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { Application } from '../../src/client/Application'
-import { CartApi, ExampleApi } from '../../src/client/api'
-import { initStore } from '../../src/client/store'
 import { beforeAll, expect } from '@jest/globals'
+import { renderApp } from './helpers/render-app'
 
 let renderedApp: RenderResult
 
 beforeAll(() => {
-  const basename = '/'
-  const api = new ExampleApi(basename)
-  const cart = new CartApi()
-  const store = initStore(api, cart)
-
-  const application = (
-    <BrowserRouter>
-      <Provider store={store}>
-        <Application />
-      </Provider>
-    </BrowserRouter>
-  );
-
-  renderedApp = render(application)
+  renderedApp = renderApp()
 })
 
 describe('header contains link', () => {
