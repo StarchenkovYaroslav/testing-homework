@@ -31,7 +31,7 @@ export const Cart: React.FC = () => {
         const rows = Object.entries(cart).map(([id, item], index) => {
 
             return (
-                <tr key={id} data-testid={id}>
+                <tr key={id} data-testid={id} className={bem('Item')}>
                     <th className={bem('Index')} scope="row">{index + 1}</th>
                     <td className={bem('Name')}>{item.name}</td>
                     <td className={bem('Price')}>${item.price}</td>
