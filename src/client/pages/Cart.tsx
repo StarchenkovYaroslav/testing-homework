@@ -68,7 +68,7 @@ export const Cart: React.FC = () => {
     } else {
         content = (
             <>
-                Cart is empty. Please select products in the <Link to="/catalog">catalog</Link>.
+                Cart is empty. Please select products in the <Link to="/catalog" data-testid="cart-to-catalog-link">catalog</Link>.
             </>
         );
     }

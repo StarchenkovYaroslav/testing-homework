@@ -1,7 +1,4 @@
-import React from 'react';
-
 import { productsMock } from './stubs/example-api-stub'
-import { beforeAll } from '@jest/globals'
 import { renderApp } from './helpers/render-app'
 
 interface IProductInfo {

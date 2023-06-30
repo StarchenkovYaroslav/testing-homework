@@ -1,15 +1,17 @@
 import { ICartApi } from '../../../src/client/api'
-import { productsMock } from './example-api-stub'
 import { CartItem, CartState, Product } from '../../../src/common/types'
 
-const getCatItem = ({ name, price }: Product): CartItem => ({ name, price, count: 1 })
+export const getCatItem = ({ name, price }: Product, count: number): CartItem => ({ name, price, count })
 
-let state: CartState = {
-  [productsMock[0].id]: getCatItem(productsMock[0]),
-}
-
+let state: CartState = {}
 
 export class CartApiStub implements ICartApi {
+  constructor(initialState?: CartState) {
+    if (initialState) {
+      state = initialState
+    }
+  }
+
   getState() {
     return state
   }

@@ -1,4 +1,3 @@
-import { beforeAll, expect } from '@jest/globals'
 import { renderApp } from './helpers/render-app'
 import { productsMock } from './stubs/example-api-stub'
 

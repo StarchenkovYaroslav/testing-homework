@@ -1,21 +1,10 @@
-import React from 'react';
-
-import { RenderResult, screen } from '@testing-library/react'
-
-import { beforeAll, expect } from '@jest/globals'
 import { renderApp } from './helpers/render-app'
-
-let renderedApp: RenderResult
-
-beforeAll(() => {
-  renderedApp = renderApp()
-})
 
 describe('header contains link', () => {
   let linksPaths: String[] = []
 
   beforeAll(() => {
-    const { container } = renderedApp
+    const { container } = renderApp()
 
     const header = container.querySelector('.navbar')
     const headerLinks = header.querySelectorAll('.nav-link')
@@ -40,7 +29,7 @@ describe('header contains link', () => {
 })
 
 it('header brand title is link to the main page', () => {
-  const { container } = renderedApp
+  const { container } = renderApp()
 
   const brandTitle = container.querySelector('.navbar-brand')
   const brandTitleLinkPath = brandTitle.getAttribute('href')
