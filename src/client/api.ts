@@ -7,6 +7,11 @@ export interface IExampleApi {
     checkout: (form: CheckoutFormData, cart: CartState) => Promise<{ data: CheckoutResponse }>
 }
 
+export interface ICartApi {
+    getState: () => CartState
+    setState: (cart: CartState) => void
+}
+
 export class ExampleApi implements IExampleApi {
     constructor(private readonly basename: string) {
 
@@ -27,7 +32,7 @@ export class ExampleApi implements IExampleApi {
 
 export const LOCAL_STORAGE_CART_KEY = 'example-store-cart';
 
-export class CartApi {
+export class CartApi implements ICartApi {
     getState(): CartState {
         try {
             const json = localStorage.getItem(LOCAL_STORAGE_CART_KEY);

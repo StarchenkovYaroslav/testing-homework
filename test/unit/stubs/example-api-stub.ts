@@ -2,30 +2,38 @@ import axios from 'axios'
 import { CartState, CheckoutFormData, CheckoutResponse, Product, ProductShortInfo } from '../../../src/common/types'
 import { IExampleApi } from '../../../src/client/api'
 
-export const productsMock: ProductShortInfo[] = [
+export const productsMock: Product[] = [
   {
     id: 1,
     name: 'Товар 1',
-    price: 25,
+    price: 11,
+    color: 'Цвет 1',
+    description: 'description 1',
+    material: 'material 1',
   },
   {
     id: 2,
     name: 'Товар 2',
-    price: 250,
+    price: 12,
+    color: 'Цвет 2',
+    description: 'description 2',
+    material: 'material 2',
   },
 ]
 
-export class ExampleApiStub implements IExampleApi {
-  constructor(private readonly basename: string) {
+const getShortInfo = (products: Product[]): ProductShortInfo[] => {
+  return products.map(({ id, name, price }) => ({ id, name, price}))
+}
 
-  }
+export class ExampleApiStub implements IExampleApi {
+  constructor(private readonly basename: string) {}
 
   async getProducts() {
-    return Promise.resolve({ data: productsMock })
+    return Promise.resolve({ data: getShortInfo(productsMock) })
   }
 
   async getProductById(id: number) {
-    return await axios.get<Product>(`${this.basename}/api/products/${id}`);
+    return Promise.resolve({ data: productsMock.find(product => product.id === id) })
   }
 
   async checkout(form: CheckoutFormData, cart: CartState) {
