@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { BrowserRouter, MemoryRouter } from 'react-router-dom'
+import { createMemoryHistory, MemoryHistory } from 'history'
+import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import { render, RenderResult } from '@testing-library/react'
@@ -11,19 +12,28 @@ import { initStore } from '../../../src/client/store'
 import { ExampleApiStub } from '../stubs/example-api-stub'
 import { CartApiStub } from '../stubs/cart-api-stub'
 
-export const renderApp = (initialPath: string = '/'): RenderResult => {
+interface renderedApp extends RenderResult {
+  history: MemoryHistory,
+}
+
+export const renderApp = (initialPath: string = '/'): renderedApp => {
   const basename = '/'
   const api = new ExampleApiStub(basename)
   const cart = new CartApiStub()
   const store = initStore(api, cart)
 
+  const history = createMemoryHistory({ initialEntries: [initialPath] })
+
   const application = (
-    <MemoryRouter initialEntries={[initialPath]}>
+    <Router history={history}>
       <Provider store={store}>
         <Application />
       </Provider>
-    </MemoryRouter>
-  );
+    </Router>
+  )
 
-  return render(application)
+  return {
+    ...render(application),
+    history,
+  }
 }
