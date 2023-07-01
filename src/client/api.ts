@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { CartState, CheckoutFormData, CheckoutResponse, Product, ProductShortInfo } from '../common/types';
+import { cartMock } from '../../test/hermione/mocks/cart.mock'
 
 export interface IExampleApi {
     getProducts: () => Promise<{ data: ProductShortInfo[] }>
@@ -34,6 +35,10 @@ export const LOCAL_STORAGE_CART_KEY = 'example-store-cart';
 
 export class CartApi implements ICartApi {
     getState(): CartState {
+        if (process.env.TEST === 'hermione') {
+            return cartMock
+        }
+
         try {
             const json = localStorage.getItem(LOCAL_STORAGE_CART_KEY);
             return JSON.parse(json) as CartState || {};

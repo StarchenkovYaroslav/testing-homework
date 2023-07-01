@@ -1,7 +1,7 @@
 module.exports = {
   sets: {
     desktop: {
-      files: "test/hermione",
+      files: "test/hermione/*hermione.ts",
     },
   },
   system: {
@@ -15,13 +15,22 @@ module.exports = {
       },
       windowSize: {
         width: 1920,
-        height: 1080,
+        height: 2000,
       }
     },
   },
   plugins: {
     "html-reporter/hermione": {
       enabled: true,
+    },
+    "url-decorator": {
+      enabled: true,
+      url: {
+        query: [{
+          name: 'test',
+          value: 'hermione',
+        }]
+      },
     },
   },
 };

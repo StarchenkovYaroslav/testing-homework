@@ -4,6 +4,8 @@ import { join } from 'path';
 import { CheckoutResponse } from '../common/types';
 import { ExampleStore } from './data';
 
+const getTest = (req: express.Request) => req.query.test
+
 export function getBugId(req: express.Request) {
     return Number(req.query.bug_id) || 0;
 }
@@ -11,7 +13,7 @@ export function getBugId(req: express.Request) {
 const indexHtmlContent = readFileSync(join(__dirname, '..', '..', "dist", "index.html")).toString();
 
 const indexHtml = (req: express.Request, res: express.Response) => {
-    res.send(indexHtmlContent.replace('</head>', `<script>var process={env:{BUG_ID:'${getBugId(req)}'}}</script></head>`) );
+    res.send(indexHtmlContent.replace('</head>', `<script>var process={env:{BUG_ID:'${getBugId(req)}',TEST:'${getTest(req)}'}}</script></head>`) );
 };
 
 const store = new ExampleStore();

@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import { combineEpics, createEpicMiddleware, ofType, StateObservable } from 'redux-observable';
-import { EMPTY, from, map, mapTo, mergeMap, mergeMapTo, Observable, tap } from 'rxjs';
+import { EMPTY, from, map, mergeMap, mergeMapTo, Observable, tap } from 'rxjs';
 import { produce } from 'immer';
 import { CartState, CheckoutFormData, Product, ProductShortInfo } from '../common/types';
-import { CartApi, ExampleApi, IExampleApi } from './api'
+import { CartApi, IExampleApi } from './api'
+import { productsMock } from '../../test/hermione/mocks/products.mock'
 
 export interface ApplicationState {
     products?: ProductShortInfo[];
@@ -91,6 +92,12 @@ function createRootReducer(state: Partial<ApplicationState>) {
 const productsLoadEpic: ExampleEpic = (action$, store$, { api }) => action$.pipe(
     ofType('PRODUCTS_LOAD'),
     mergeMap((a: ReturnType<typeof productsLoad>) => {
+        if (process.env.TEST === 'hermione') {
+            return from(Promise.resolve({ data: productsMock })).pipe(
+              map(products => productsLoaded(products.data)),
+            )
+        }
+
         return from(api.getProducts()).pipe(
             map(products => productsLoaded(products.data)),
         );
