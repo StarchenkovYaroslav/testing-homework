@@ -7,7 +7,7 @@
         "test:e2e": "node_modules/.bin/hermione",
         "test:e2e:win": ".\\node_modules\\.bin\\hermione",
         "test:e2e:gui": "node_modules/.bin/hermione gui",
-        "test:e2e:gui:win": "test:e2e:win gui",
+        "test:e2e:gui:win": "npm run test:e2e:win gui",
         "test": "npm run test:unit && npm run test:e2e",
         "build": "webpack --mode=production --node-env=production",
         "watch": "webpack --watch"
