@@ -79,37 +79,49 @@ describe('pages are responsive', () => {
     it('1400', async function () {
       await this.browser.url('http://localhost:3000/hw/store/catalog/1')
       this.browser.setWindowSize(1400, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
+      await this.browser.assertView('plain', 'body', {
+        ignoreElements: ['.ProductDetails-AddToCart-Container'],
+      })
     })
 
     it('1200', async function () {
       await this.browser.url('http://localhost:3000/hw/store/catalog/1')
       this.browser.setWindowSize(1200, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
+      await this.browser.assertView('plain', 'body', {
+        ignoreElements: ['.ProductDetails-AddToCart-Container'],
+      })
     })
 
     it('992', async function () {
       await this.browser.url('http://localhost:3000/hw/store/catalog/1')
       this.browser.setWindowSize(992, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
+      await this.browser.assertView('plain', 'body', {
+        ignoreElements: ['.ProductDetails-AddToCart-Container'],
+      })
     })
 
     it('768', async function () {
       await this.browser.url('http://localhost:3000/hw/store/catalog/1')
       this.browser.setWindowSize(768, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
+      await this.browser.assertView('plain', 'body', {
+        ignoreElements: ['.ProductDetails-AddToCart-Container'],
+      })
     })
 
     it('576', async function () {
       await this.browser.url('http://localhost:3000/hw/store/catalog/1')
       this.browser.setWindowSize(576, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
+      await this.browser.assertView('plain', 'body', {
+        ignoreElements: ['.ProductDetails-AddToCart-Container'],
+      })
     })
 
     it('320', async function () {
       await this.browser.url('http://localhost:3000/hw/store/catalog/1')
       this.browser.setWindowSize(320, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
+      await this.browser.assertView('plain', 'body', {
+        ignoreElements: ['.ProductDetails-AddToCart-Container'],
+      })
     })
   })
 

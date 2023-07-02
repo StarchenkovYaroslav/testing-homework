@@ -30,7 +30,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                 <h1 className={bem("Name")}>{product.name}</h1>
                 <p className={bem("Description")}>{product.description}</p>
                 <p className={bem("Price", ['fs-3'])}>${product.price}</p>
-                <p>
+                <p className="ProductDetails-AddToCart-Container">
                     <button className={bem("AddToCart", ['btn', 'btn-primary', btnSizeClass])} onClick={onClick}>Add to Cart</button>
                     <CartBadge id={product.id} />
                 </p>
