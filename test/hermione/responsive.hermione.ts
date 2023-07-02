@@ -1,242 +1,66 @@
+// @ts-ignore
+async function takeScreenshots(browser) {
+  browser.setWindowSize(1400, (await browser.getWindowSize()).height)
+  await browser.assertView('1400', 'body')
+
+  browser.setWindowSize(1200, (await browser.getWindowSize()).height)
+  await browser.assertView('1200', 'body')
+
+  browser.setWindowSize(992, (await browser.getWindowSize()).height)
+  await browser.assertView('992', 'body')
+
+  browser.setWindowSize(768, (await browser.getWindowSize()).height)
+  await browser.assertView('768', 'body')
+
+  browser.setWindowSize(576, (await browser.getWindowSize()).height)
+  await browser.assertView('576', 'body')
+
+  browser.setWindowSize(320, (await browser.getWindowSize()).height)
+  await browser.assertView('320', 'body')
+}
+
+
 describe('pages are responsive', () => {
-  describe('main', () => {
-    it('1400', async function () {
-      await this.browser.url('http://localhost:3000/hw/store')
-      this.browser.setWindowSize(1400, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+  it('main', async function () {
+    const browser = this.browser
+    await browser.url('http://localhost:3000/hw/store')
 
-    it('1200', async function () {
-      await this.browser.url('http://localhost:3000/hw/store')
-      this.browser.setWindowSize(1200, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('992', async function () {
-      await this.browser.url('http://localhost:3000/hw/store')
-      this.browser.setWindowSize(992, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('768', async function () {
-      await this.browser.url('http://localhost:3000/hw/store')
-      this.browser.setWindowSize(768, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('576', async function () {
-      await this.browser.url('http://localhost:3000/hw/store')
-      this.browser.setWindowSize(576, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('320', async function () {
-      await this.browser.url('http://localhost:3000/hw/store')
-      this.browser.setWindowSize(320, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+    await takeScreenshots(browser)
   })
 
-  describe('catalog', () => {
-    it('1400', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog')
-      this.browser.setWindowSize(1400, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+  it('catalog', async function () {
+    const browser = this.browser
+    await browser.url('http://localhost:3000/hw/store/catalog')
 
-    it('1200', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog')
-      this.browser.setWindowSize(1200, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('992', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog')
-      this.browser.setWindowSize(992, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('768', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog')
-      this.browser.setWindowSize(768, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('576', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog')
-      this.browser.setWindowSize(576, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('320', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog')
-      this.browser.setWindowSize(320, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+    await takeScreenshots(browser)
   })
 
-  describe('product', () => {
-    it('1400', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog/1')
-      this.browser.setWindowSize(1400, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body', {
-        ignoreElements: ['.ProductDetails-AddToCart-Container'],
-      })
-    })
+  it('product', async function () {
+    const browser = this.browser
+    await browser.url('http://localhost:3000/hw/store/catalog/1')
 
-    it('1200', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog/1')
-      this.browser.setWindowSize(1200, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body', {
-        ignoreElements: ['.ProductDetails-AddToCart-Container'],
-      })
-    })
-
-    it('992', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog/1')
-      this.browser.setWindowSize(992, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body', {
-        ignoreElements: ['.ProductDetails-AddToCart-Container'],
-      })
-    })
-
-    it('768', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog/1')
-      this.browser.setWindowSize(768, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body', {
-        ignoreElements: ['.ProductDetails-AddToCart-Container'],
-      })
-    })
-
-    it('576', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog/1')
-      this.browser.setWindowSize(576, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body', {
-        ignoreElements: ['.ProductDetails-AddToCart-Container'],
-      })
-    })
-
-    it('320', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/catalog/1')
-      this.browser.setWindowSize(320, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body', {
-        ignoreElements: ['.ProductDetails-AddToCart-Container'],
-      })
-    })
+    await takeScreenshots(browser)
   })
 
-  describe('delivery', () => {
-    it('1400', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/delivery')
-      this.browser.setWindowSize(1400, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+  it('delivery', async function () {
+    const browser = this.browser
+    await browser.url('http://localhost:3000/hw/store/delivery')
 
-    it('1200', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/delivery')
-      this.browser.setWindowSize(1200, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('992', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/delivery')
-      this.browser.setWindowSize(992, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('768', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/delivery')
-      this.browser.setWindowSize(768, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('576', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/delivery')
-      this.browser.setWindowSize(576, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('320', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/delivery')
-      this.browser.setWindowSize(320, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+    await takeScreenshots(browser)
   })
 
-  describe('contacts', () => {
-    it('1400', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/contacts')
-      this.browser.setWindowSize(1400, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+  it('contacts', async function () {
+    const browser = this.browser
+    await browser.url('http://localhost:3000/hw/store/contacts')
 
-    it('1200', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/contacts')
-      this.browser.setWindowSize(1200, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('992', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/contacts')
-      this.browser.setWindowSize(992, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('768', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/contacts')
-      this.browser.setWindowSize(768, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('576', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/contacts')
-      this.browser.setWindowSize(576, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('320', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/contacts')
-      this.browser.setWindowSize(320, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+    await takeScreenshots(browser)
   })
 
-  describe('cart', () => {
-    it('1400', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/cart')
-      this.browser.setWindowSize(1400, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+  it('cart', async function () {
+    const browser = this.browser
+    await browser.url('http://localhost:3000/hw/store/cart')
 
-    it('1200', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/cart')
-      this.browser.setWindowSize(1200, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('992', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/cart')
-      this.browser.setWindowSize(992, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('768', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/cart')
-      this.browser.setWindowSize(768, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('576', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/cart')
-      this.browser.setWindowSize(576, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
-
-    it('320', async function () {
-      await this.browser.url('http://localhost:3000/hw/store/cart')
-      this.browser.setWindowSize(320, (await this.browser.getWindowSize()).height)
-      await this.browser.assertView('plain', 'body')
-    })
+    await takeScreenshots(browser)
   })
 })
 

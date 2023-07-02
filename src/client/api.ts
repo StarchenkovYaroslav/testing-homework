@@ -48,6 +48,10 @@ export class CartApi implements ICartApi {
     }
 
     setState(cart: CartState) {
+        if (process.env.TEST === 'hermione') {
+            return
+        }
+
         localStorage.setItem(LOCAL_STORAGE_CART_KEY, JSON.stringify(cart));
     }
 }

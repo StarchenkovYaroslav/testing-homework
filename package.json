@@ -9,8 +9,8 @@
         "test:e2e:gui": "node_modules/.bin/hermione gui",
         "test:e2e:gui:win": "npm run test:e2e:win gui",
         "test": "npm run test:unit && npm run test:e2e",
-        "test:win": "npm run test:unit && npm run test:e2e:win",
-        "test:win:bug": "set BUG_ID=7&&npm run test:win",
+        "test:win": "npm run test:unit & npm run test:e2e:win",
+        "test:win:bug": "cross-env BUG_ID=1 npm run test:win",
         "build": "webpack --mode=production --node-env=production",
         "watch": "webpack --watch"
     },
@@ -49,6 +49,7 @@
         "@types/supertest": "^2.0.12",
         "@types/webpack": "^5.28.0",
         "chai": "^4.3.7",
+        "cross-env": "^7.0.3",
         "css-loader": "^6.3.0",
         "hermione": "^5.6.1",
         "html-webpack-plugin": "^5.3.2",

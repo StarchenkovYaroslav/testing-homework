@@ -26,7 +26,5 @@ it('order info shows after submit', async () => {
 
   const orderInfo = await findByTestId('order-info')
 
-  screen.logTestingPlaygroundURL()
-
   expect(orderInfo).toBeTruthy()
 })
