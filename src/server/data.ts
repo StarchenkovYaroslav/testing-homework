@@ -24,9 +24,19 @@ function getShortInfo({ id, name, price }: Product): ProductShortInfo {
 
 export const SIZE = 200;
 
+export interface InitialStore {
+    initialProducts?: Product[]
+    initialOrders?: Order[]
+}
+
 export class ExampleStore {
-    private readonly products: Product[] = generateProducts();
-    private readonly orders: (Order | { id: number })[] = [];
+    private readonly products;
+    private readonly orders: (Order | { id: number })[];
+
+    constructor({ initialProducts, initialOrders }: InitialStore = {}) {
+        this.products = initialProducts || generateProducts();
+        this.orders = initialOrders || [];
+    }
 
     getAllProducts(bugId: number): ProductShortInfo[] {
         const products = this.products.map(getShortInfo);

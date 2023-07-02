@@ -26,10 +26,16 @@ module.exports = {
     "url-decorator": {
       enabled: true,
       url: {
-        query: [{
-          name: 'test',
-          value: 'hermione',
-        }]
+        query: [
+          {
+            name: 'test',
+            value: 'hermione',
+          },
+          {
+            name: 'bug_id',
+            value: process.env.BUG_ID,
+          },
+        ]
       },
     },
   },

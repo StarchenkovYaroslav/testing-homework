@@ -107,6 +107,12 @@ const productsLoadEpic: ExampleEpic = (action$, store$, { api }) => action$.pipe
 const productDetailsLoadEpic: ExampleEpic = (action$, store$, { api }) => action$.pipe(
     ofType('PRODUCT_DETAILS_LOAD'),
     mergeMap((a: ReturnType<typeof productDetailsLoad>) => {
+        if (process.env.TEST === 'hermione') {
+            return from(Promise.resolve({ data: productsMock[0] })).pipe(
+              map(products => productDetailsLoaded(products.data)),
+            )
+        }
+
         return from(api.getProductById(a.id)).pipe(
             map(products => productDetailsLoaded(products.data)),
         );
