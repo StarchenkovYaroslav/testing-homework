@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { CartState, CheckoutFormData, CheckoutResponse, Product, ProductShortInfo } from '../../../../src/common/types'
+import { CartState, CheckoutFormData } from '../../../../src/common/types'
 import { IExampleApi } from '../../../../src/client/api'
 import { productsMock } from '../../mocks/products.mock'
 import { getShortInfo } from '../../helpers/get-short-info'
@@ -16,6 +15,6 @@ export class ExampleApiStub implements IExampleApi {
   }
 
   async checkout(form: CheckoutFormData, cart: CartState) {
-    return await axios.post<CheckoutResponse>(`${this.basename}/api/checkout`, { form, cart });
+    return Promise.resolve({ data: { id: 1 } })
   }
 }

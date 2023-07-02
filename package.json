@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "start": "nodemon ./src/server/index.ts",
-        "test:unit": "set BUG_ID=2&&jest",
+        "test:unit": "jest",
         "test:e2e": "node_modules/.bin/hermione",
         "test:e2e:win": ".\\node_modules\\.bin\\hermione",
         "test:e2e:gui": "node_modules/.bin/hermione gui",
