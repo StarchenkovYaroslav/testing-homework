@@ -52,7 +52,7 @@ export const Form: React.FC<FormProps> = ({ onSubmit }) => {
 
     return (
         <div className={bem()}>
-            <div className="mb-3">
+            <div className="mb-3" data-testid="name-field">
                 <label htmlFor="f-name" className="form-label">Name</label>
                 <input
                     id="f-name"
@@ -60,28 +60,34 @@ export const Form: React.FC<FormProps> = ({ onSubmit }) => {
                     disabled={sent}
                     className={bem("Field", { type: 'name' }, [getControlClass(nameIsValid, submitted)])}
                     autoComplete="off"
-                    onChange={onChangeName} />
-                <div className="invalid-feedback">Please provide your name</div>
+                    onChange={onChangeName}
+                    data-testid="name-input"
+                />
+                <div className="invalid-feedback" data-testid="name-input-message">Please provide your name</div>
             </div>
-            <div className="mb-3">
+            <div className="mb-3" data-testid="phone-field">
                 <label htmlFor="f-phone" className="form-label">Phone</label>
                 <input
                     id="f-phone"
                     type="text"
                     disabled={sent}
                     className={bem("Field", { type: 'phone' }, [getControlClass(phoneIsValid, submitted)] )}
-                    onChange={onChangePhone} />
-                <div className="invalid-feedback">Please provide a valid phone</div>
+                    onChange={onChangePhone}
+                    data-testid="phone-input"
+                />
+                <div className="invalid-feedback" data-testid="phone-input-message">Please provide a valid phone</div>
             </div>
-            <div className="mb-3">
+            <div className="mb-3" data-testid="address-field">
                 <label htmlFor="f-address" className="form-label">Address</label>
                 <textarea
                     id="f-address"
                     disabled={sent}
                     rows={3}
                     className={bem("Field", { type: 'address' }, [getControlClass(addressIsValid, submitted)] )}
-                    onChange={onChangeAddress}></textarea>
-                <div className="invalid-feedback">Please provide a valid address</div>
+                    onChange={onChangeAddress}
+                    data-testid="address-input"
+                />
+                <div className="invalid-feedback" data-testid="address-input-message">Please provide a valid address</div>
             </div>
 
             <button className={bem('Submit', ['btn', 'btn-primary'])} disabled={sent} onClick={onClick}>Checkout</button>
